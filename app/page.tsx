@@ -1,18 +1,12 @@
-"use client"; // Ensure this is a Client Component
-
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 
 export default function Home() {
-  const pathname = usePathname();
-  const basePath = pathname.startsWith("/theonegmavn") ? "/theonegmavn" : "";
-
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
-          src={`${basePath}/next.svg`} // Dynamically adjust the path
+          src="next.svg"
           alt="Next.js logo"
           width={180}
           height={38}
@@ -38,7 +32,7 @@ export default function Home() {
           >
             <Image
               className="dark:invert"
-              src={`${basePath}/vercel.svg`} // Dynamically adjust the path
+              src="vercel.svg"
               alt="Vercel logomark"
               width={20}
               height={20}
@@ -64,7 +58,7 @@ export default function Home() {
         >
           <Image
             aria-hidden
-            src={`${basePath}/file.svg`} // Dynamically adjust the path
+            src="file.svg"
             alt="File icon"
             width={16}
             height={16}
@@ -79,7 +73,7 @@ export default function Home() {
         >
           <Image
             aria-hidden
-            src={`${basePath}/window.svg`} // Dynamically adjust the path
+            src="window.svg"
             alt="Window icon"
             width={16}
             height={16}
@@ -94,7 +88,7 @@ export default function Home() {
         >
           <Image
             aria-hidden
-            src={`${basePath}/globe.svg`} // Dynamically adjust the path
+            src="globe.svg"
             alt="Globe icon"
             width={16}
             height={16}
