@@ -1,0 +1,89 @@
+.navbar {
+  z-index: 99;
+  &.nav-home {
+    background-color: rgba(255, 255, 255, 0.5);
+
+    .nav-item {
+      background-color: rgba(47, 195, 206, 0.6);
+
+      .nav-link {
+        color: rgb(15, 55, 58);
+        transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+      }
+    }
+  }
+
+  &.nav-featured_service {
+    background-color: rgba(255, 255, 255, 0.5); // Bright blue
+    .nav-item {
+      background-color: rgba(205, 173, 125, 0.6);
+
+      .nav-link {
+        transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+        color: #967f5c;
+      }
+    }
+  }
+  &.nav-equipment {
+    background-color: rgba(255, 255, 255, 0.5); // Bright blue
+    .nav-item {
+      background-color: rgba(205, 173, 125, 0.6);
+
+      .nav-link {
+        transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+        color: #967f5c;
+      }
+    }
+  }
+
+  // Service section styling
+  &.nav-service {
+    background-color: rgba(255, 255, 255, 0.5); // Green
+    .nav-item {
+      background-color: rgba(47, 195, 206, 0.6);
+
+      .nav-link {
+        transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+        color: rgb(15, 55, 58);
+      }
+    }
+  }
+  &.nav-service-couintries {
+    background-color: rgba(255, 255, 255, 0.5); // Green
+    .nav-item {
+      background-color: rgba(47, 195, 206, 0.6);
+
+      .nav-link {
+        transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+        color: rgb(15, 55, 58);
+      }
+    }
+  }
+
+  // News section styling
+  &.nav-news {
+    background-color: rgba(255, 255, 255, 0.5); // Orange
+    .nav-item {
+      background-color: rgba(34, 35, 68, 0.6);
+
+      .nav-link {
+        transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+        color: #cdad7d;
+      }
+    }
+  }
+
+  // Contact Us section styling
+  &.nav-contact {
+    background-color: rgba(205, 173, 125, 0.5);
+    .nav-item {
+      background-color: rgba(205, 173, 125, 0.6);
+
+      .nav-link {
+        transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+        color: #967f5c;
+      }
+    }
+  }
+  // Repeat similar structure for other sections like nav-featured_service, nav-equipment, etc.
+}

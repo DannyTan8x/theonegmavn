@@ -11,38 +11,77 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+
 const navigation = [
-  { name: "HOME", href: "/", section: "home" },
-  { name: "SERVICE", href: "/#service", section: "service" },
-  { name: "NEWS", href: "/#news", section: "news" },
-  { name: "CONTACT US", href: "/contact", section: "contact" },
+  {
+    name: "HOME",
+    href: "/",
+    section: ["home", "equipment", "featured_service"],
+  },
+  { name: "SERVICE", href: "/#service", section: ["service"] },
+  { name: "NEWS", href: "/#news", section: ["news"] },
+  { name: "CONTACT US", href: "/contact", section: ["contact"] },
 ];
 function classNames(...classes: String[]) {
   return classes.filter(Boolean).join(" ");
 }
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     sections.forEach((section) => {
-  //       const element = document.getElementById(section);
-  //       if (element) {
-  //         const rect = element.getBoundingClientRect();
-  //         if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-  //           setActiveSection(section);
-  //           document.documentElement.style.setProperty(
-  //             "--active-section",
-  //             section
-  //           );
-  //         }
-  //       }
-  //     });
-  //   };
-  //   console.log(activeSection);
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
+  const userClicked = useRef(false); // Track if user clicked a nav item
+
+  const location = window.location;
+
+  const scrollToSection = useCallback((targetId: string, index: number) => {
+    console.log(targetId);
+    setActiveSection(targetId);
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      window.scrollTo({
+        top: targetSection.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+  // Handle active class dynamically using IntersectionObserver
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+    const options = {
+      root: null, // Use the viewport as the root
+      threshold: 0.5, // Trigger when 50% of the section is visible
+    };
+    console.log("Scrolling");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, [location]);
+  // Smooth scrolling for sections
+
+  useEffect(() => {
+    //Ensure smooth scroll works when navigating via links
+    if (location.hash) {
+      const targetSection = document.getElementById(location.hash.slice(1)); // remove "#" from hash.
+      if (targetSection) {
+        window.scrollTo({
+          top: targetSection.offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [location]);
   useEffect(() => {
     const sections = document.querySelectorAll("section");
 
@@ -67,6 +106,7 @@ export default function Navbar() {
         }
       });
     };
+
     const scrollToSection = (index: number) => {
       if (index < 0 || index >= sections.length) return; // Out of bounds check
       isScrolling = true;
@@ -165,65 +205,109 @@ export default function Navbar() {
     };
   }, []);
   return (
-    <Disclosure
-      as="nav"
-      className="fixed bg-gray-100 p-2 absolute left-0 right-0 md:left-15 md:mt-5 md:right-15 md:rounded-full"
-    >
-      <div className="mx-auto max-w-7xl px-2 ms:px-4 lg:px-3">
-        <div className="relative flex h-16 items-center justify-between">
-          {/* Logo & The One */}
-          <div className="flex gap-2 lg:gap-5">
-            <Image
-              src="Logo.png"
-              alt="Profile"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "auto", height: "50px" }}
-            />
-            <Link href="/" className="flex flex-col items-left mx-2 font-bold">
-              <span className="text-3xl">THE ONE</span>{" "}
-              <span className="text-sm italic">ONE SOLUTION</span>
-            </Link>
-          </div>
-          <div className="absolute inset-y-0 right-0 flex items-center md:hidden">
-            {/* Mobile menu button*/}
-            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
-              <span className="absolute -inset-0.5" />
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon
-                aria-hidden="true"
-                className="block size-6 group-data-open:hidden"
-              />
-              <XMarkIcon
-                aria-hidden="true"
-                className="hidden size-6 group-data-open:block"
-              />
-            </DisclosureButton>
-          </div>
-          <div className="flex flex-1 items-center justify-center sm:items-streth sm:justify-end">
-            <div className="hidden sm:ml-5 md:block">
-              <div className={`${activeSection} flex space-x-1 `}>
-                {navigation.map((item) => (
+    <Disclosure as="nav">
+      {({ open }) => (
+        <div
+          className={classNames(
+            `navbar nav-${activeSection}`,
+            "fixed p-2 absolute left-0 right-0 md:left-15 md:mt-5 md:right-15",
+            open ? "md:rounded-t-[40px] md:rounded-b-lg" : "md:rounded-full" // Dynamically change based on open state
+          )}
+        >
+          <div className="mx-auto max-w-7xl px-2 ms:px-4 lg:px-3">
+            <div className="mx-auto max-w-7xl px-2 ms:px-4 lg:px-3">
+              <div className="relative flex h-16 items-center justify-between">
+                {/* Logo & The One */}
+                <div className={classNames("flex gap-2 lg:gap-5")}>
+                  <Image
+                    src="Logo.png"
+                    alt="Profile"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{ width: "auto", height: "50px" }}
+                  />
                   <Link
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      `${
-                        activeSection === item.section ? "active-section" : ""
-                      } rounded-full w-30 px-3 py-2 md:px-2 lg:mx-5 text-sm font-medium text-center`
-                    )}
-                    onClick={() => setActiveSection(item.section)}
+                    href="/"
+                    className="flex flex-col items-left mx-2 font-bold"
                   >
-                    {item.name}
+                    <span className="text-3xl whitespace-nowrap">THE ONE</span>{" "}
+                    <span className="text-sm italic">ONE SOLUTION</span>
                   </Link>
-                ))}
+                </div>
+                <div className="absolute inset-y-0 right-0 flex items-center lg:hidden">
+                  {/* Mobile menu button*/}
+                  <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
+                    <span className="absolute -inset-0.5" />
+                    <span className="sr-only">Open main menu</span>
+                    <Bars3Icon
+                      aria-hidden="true"
+                      className="block size-6 group-data-open:hidden"
+                    />
+                    <XMarkIcon
+                      aria-hidden="true"
+                      className="hidden size-6 group-data-open:block"
+                    />
+                  </DisclosureButton>
+                </div>
+                <div className="flex flex-1 items-center justify-center sm:items-streth sm:justify-end">
+                  <div className="hidden sm:ml-5 lg:block">
+                    <div className={`flex space-x-1 `}>
+                      {navigation.map((item) => (
+                        <ul key={item.name}>
+                          <li className="nav-item rounded-full w-30 px-3 py-2 md:px-2 lg:mx-5 text-sm font-medium text-center">
+                            <Link
+                              href={item.href}
+                              className={classNames(
+                                "nav-link",
+                                `${
+                                  item.section.includes(activeSection)
+                                    ? "active"
+                                    : ""
+                                } text-bold`
+                              )}
+                              onClick={() =>
+                                scrollToSection(
+                                  item.section[0],
+                                  navigation.indexOf(item)
+                                )
+                              }
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        </ul>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+            <DisclosurePanel className="lg:hidden">
+              <div className="space-y-1 px-2 pt-2 pb-3">
+                {navigation.map((item) => (
+                  <DisclosureButton
+                    key={item.name}
+                    as="a"
+                    href={item.href}
+                    aria-current={
+                      item.section.includes(activeSection) ? "page" : undefined
+                    }
+                    className={classNames(
+                      item.section.includes(activeSection)
+                        ? " text-black"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "block rounded-md px-3 py-2 text-base font-medium"
+                    )}
+                  >
+                    {item.name}
+                  </DisclosureButton>
+                ))}
+              </div>
+            </DisclosurePanel>
           </div>
         </div>
-      </div>
+      )}
     </Disclosure>
   );
 }
