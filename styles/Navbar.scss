@@ -43,7 +43,6 @@
     }
   }
 
-  // Service section styling
   &.nav-service {
     background-color: rgba(255, 255, 255, 0.5); // Green
     .nav-item {
@@ -67,7 +66,6 @@
     }
   }
 
-  // News section styling
   &.nav-news {
     background-color: rgba(255, 255, 255, 0.5); // Orange
     .nav-item {
@@ -80,7 +78,6 @@
     }
   }
 
-  // Contact Us section styling
   &.nav-contact {
     background-color: rgba(205, 173, 125, 0.5);
     .nav-item {
@@ -92,5 +89,4 @@
       }
     }
   }
-  // Repeat similar structure for other sections like nav-featured_service, nav-equipment, etc.
 }

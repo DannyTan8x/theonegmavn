@@ -2,11 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-// @import "@/styles/Navbar";
-// @import "@/styles/pages";
+@import "@/styles/Navbar";
+@import "@/styles/pages";
 
 :root {
-  --active-section: "home"; /* Default value */
+  --active-section: "home";
   --background: #ffffff;
   --foreground: #171717;
   --primary: red;
