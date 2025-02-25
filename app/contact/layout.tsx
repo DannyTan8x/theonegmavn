@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-
 export default function ContactLayout({
   children,
 }: {
@@ -7,7 +5,6 @@ export default function ContactLayout({
 }) {
   return (
     <div>
-      <Navbar /> {/* Add the Navbar here */}
       <main>
         <h1>Contact Page</h1>
         {children} {/* Content from page.tsx will be injected here */}

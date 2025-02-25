@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 :root {
+    --active-section: "home"; /* Default value */
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -19,4 +20,21 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.active-section {
+    color: hsl(var(--primary)); /* Use your primary color */
+    font-weight: bold;
+}
+
+nav a {
+    transition: color 0.3s ease;
+}
+
+nav a.active-section {
+    color: hsl(var(--primary));
+    font-weight: bold;
+}
+section{
+    height: 100vh;
 }
