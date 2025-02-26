@@ -12,7 +12,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const navigation = [
   {
@@ -29,10 +29,16 @@ function classNames(...classes: String[]) {
 }
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
-  const userClicked = useRef(false); // Track if user clicked a nav item
+  const [location, setLocation] = useState<Location | null>(null);
 
-  const location = window.location;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setLocation(window.location);
+    }
+  }, []);
 
+  //   const location = window.location;
+  console.log("window:", location);
   const scrollToSection = useCallback((targetId: string, index: number) => {
     console.log(targetId);
     setActiveSection(targetId);
@@ -72,7 +78,7 @@ export default function Navbar() {
 
   useEffect(() => {
     //Ensure smooth scroll works when navigating via links
-    if (location.hash) {
+    if (location && location.hash) {
       const targetSection = document.getElementById(location.hash.slice(1)); // remove "#" from hash.
       if (targetSection) {
         window.scrollTo({

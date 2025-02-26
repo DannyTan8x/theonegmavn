@@ -1,9 +1,11 @@
+@import url('../styles/Navbar.css');
+@import url('../styles/pages.css');
+@import "tailwindcss";
+/* Tailwind CSS layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "tailwindcss";
-@import "@/styles/Navbar";
-@import "@/styles/pages";
+
 
 :root {
   --active-section: "home";
