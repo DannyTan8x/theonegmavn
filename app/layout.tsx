@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ScrollProvider } from "@/context/ScrollContext"; // Import your ScrollProvider
-import "./globals.scss";
+import "./globals.css";
 import Navbar from "@/components/Navbar2";
 
 const geistSans = Geist({
