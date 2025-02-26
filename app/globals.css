@@ -12,12 +12,25 @@
   --background: #ffffff;
   --foreground: #171717;
   --primary: red;
+  --bg-blue:  rgba(59, 240, 253, 0.6);
+  --grey: rgba(255,255,255,0.5);
+  --gray: #d9d9d9;
+  --bg-golden: rgba(205, 173, 125, 0.6);
+  --text-golden:#967f5c;
+  --text-dark-blue:#0f373a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: rgb(0,255,255);
+    --bg-blue:  rgba(59, 240, 253, 0.6);
+    --grey: rgba(59,59,59,0.5);
+    --gray: rgba(40, 40, 40, 0.6);
+    --bg-golden: rgba(50, 82, 130, 0.6);
+    --text-golden:#798eae;
+    --text-dark-blue:#f0c8c5;
   }
 }
 

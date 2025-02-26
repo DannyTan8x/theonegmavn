@@ -2,62 +2,62 @@
   z-index: 99;
 }
 .navbar .nav-link.active {
-  color: white !important;
+  color: var(--background) !important;
   transition: color 0.3s ease-in-out;
   font-weight: 500;
 }
 .navbar.nav-home {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--grey)
 }
 .navbar.nav-home .nav-item {
-  background-color: rgba(47, 195, 206, 0.6);
+  background-color: var(--bg-blue);
 }
 .navbar.nav-home .nav-item .nav-link {
-  color: #0f373a;
+  color: var(--text-dark-blue);
   transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
 }
 .navbar.nav-featured_service {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--grey);
 }
 .navbar.nav-featured_service .nav-item {
-  background-color: rgba(205, 173, 125, 0.6);
+  background-color: var(--bg-golden);
 }
 .navbar.nav-featured_service .nav-item .nav-link {
   transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
-  color: #967f5c;
+  color: var(--text-golden);
 }
 .navbar.nav-equipment {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--grey);
 }
 .navbar.nav-equipment .nav-item {
-  background-color: rgba(205, 173, 125, 0.6);
+  background-color: var(--bg-golden);
 }
 .navbar.nav-equipment .nav-item .nav-link {
   transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
-  color: #967f5c;
+  color:var(--text-golden);
 }
 .navbar.nav-service {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--grey);
 }
 .navbar.nav-service .nav-item {
-  background-color: rgba(47, 195, 206, 0.6);
+  background-color:var(--bg-blue);
 }
 .navbar.nav-service .nav-item .nav-link {
   transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
-  color: #0f373a;
+  color: var(--text-dark-blue);
 }
 .navbar.nav-service-couintries {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--grey);
 }
 .navbar.nav-service-couintries .nav-item {
-  background-color: rgba(47, 195, 206, 0.6);
+  background-color: var(--bg-blue);
 }
 .navbar.nav-service-couintries .nav-item .nav-link {
   transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
-  color: #0f373a;
+  color:var(--text-dark-blue);
 }
 .navbar.nav-news {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--grey);
 }
 .navbar.nav-news .nav-item {
   background-color: rgba(34, 35, 68, 0.6);
