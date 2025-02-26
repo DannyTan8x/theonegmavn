@@ -17,7 +17,7 @@ import { useState, useEffect, useCallback } from "react";
 const navigation = [
   {
     name: "HOME",
-    href: "/",
+    href: "/#home",
     section: ["home", "equipment", "featured_service"],
   },
   { name: "SERVICE", href: "/#service", section: ["service"] },
@@ -38,7 +38,6 @@ export default function Navbar() {
   }, []);
 
   //   const location = window.location;
-  console.log("window:", location);
   const scrollToSection = useCallback((targetId: string, index: number) => {
     console.log(targetId);
     setActiveSection(targetId);
@@ -200,7 +199,7 @@ export default function Navbar() {
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       // Cleanup event listeners
@@ -258,10 +257,10 @@ export default function Navbar() {
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-streth sm:justify-end">
                   <div className="hidden sm:ml-5 lg:block">
-                    <div className={`flex space-x-1 `}>
+                    <div className={`flex`}>
                       {navigation.map((item) => (
                         <ul key={item.name}>
-                          <li className="nav-item rounded-full w-30 px-3 py-2 md:px-2 lg:mx-5 text-sm font-medium text-center">
+                          <li className="nav-item rounded-full w-30 px-1 py-2 md:px-1 md:mx-2 lg:mx-3 xl:mx-8 text-sm font-medium text-center">
                             <Link
                               href={item.href}
                               className={classNames(
@@ -301,8 +300,8 @@ export default function Navbar() {
                     }
                     className={classNames(
                       item.section.includes(activeSection)
-                        ? " text-black"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        ? " text-black text-bold"
+                        : "text-gray-500 hover:bg-gray-700 hover:text-white",
                       "block rounded-md px-3 py-2 text-base font-medium"
                     )}
                   >

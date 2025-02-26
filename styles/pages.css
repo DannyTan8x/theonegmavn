@@ -10,7 +10,7 @@
 }
 .blue {
   background: rgba(59, 240, 253, 0.6);
-  width: 100vw;
+  width: 100%;
   z-index: 0;
 }
 #home {
@@ -80,16 +80,29 @@ section .container {
 .home h2 {
   animation: fadeSlideUp 1s ease-in-out;
 }
-.home p {
-  width: 50vw;
-  color: black;
-}
-@media (max-width: 576px) {
-  .home p {
-    width: 80vw;
-  }
-}
+
 .home .btn {
   color: white;
   background-color: #0097b2;
+}
+
+.featured_service {
+  /* color: black; */
+  z-index: 2;
+  text-wrap: wrap;
+}
+.featured_service h2 {
+  animation: fadeSlideUp 1s ease-in-out;
+}
+
+
+
+.featured_service .btn {
+  color: black;
+  background-color: #cdad7d;
+}
+
+.equipment .btn {
+  color: black;
+  background-color: #cdad7d;
 }

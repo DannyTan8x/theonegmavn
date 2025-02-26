@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ScrollProvider } from "@/context/ScrollContext"; // Import your ScrollProvider
 import "./globals.css";
 import Navbar from "@/components/Navbar2";
 
@@ -26,15 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ScrollProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
-        >
-          <Navbar />
-          {children}
-        </body>
-      </html>
-    </ScrollProvider>
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+      >
+        <Navbar />
+        {children}
+      </body>
+    </html>
   );
 }

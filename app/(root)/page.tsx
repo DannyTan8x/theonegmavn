@@ -6,52 +6,55 @@ export default function Home() {
     <>
       <section id="home" className="@container ">
         <div className="blue hidden md:block absolute left-0 top-0 p-16 "></div>
-        <div className="container home  @md:flex-row">
-          <h2 className="titel">
+        <div className="container home  flex flex-col justify-center">
+          <h2 className="title">
             Product Certification <br />
             Expert
           </h2>
-          <p className="responsive-font">
+          <p className=" md:w-[50%]">
             We provide one-stop professional services in the field of product
             compliance, bringing your products to market in Vietnam and
             Southeast Asia.
           </p>
-          <a className="btn" href="#featured_service">
-            LEARN MORE
-          </a>
+          <div className="absolute right-0 bottom-0 flex">
+            <a className="btn" href="#featured_service">
+              LEARN MORE
+            </a>
+          </div>
         </div>
       </section>
       <section id="featured_service">
-        <div className="container featured_service ">
-          <h2 className=" m-3 responsive-font fs-1">
-            Featured service —— MIC ICT type approval certificate
+        <div className="container featured_service flex flex-col md:justify-center md:block ">
+          <h2 className="title-sm md:title">
+            Featured service <br className="hidden lg:block" /> —— MIC ICT type
+            approval certificate
           </h2>
-          <div className="row flex-column flex-md-row my-md-2 responsive-font">
-            <div className="col d-flex justify-content-around">
-              <div className="d-flex flex-md-column justify-content-around align-items-center ">
+          <div className="flex flex-col md:flex-row lg:justify-around xl:mt-20">
+            <div className="flex justify-center md:w-1/3 ">
+              <div className="flex justify-around md:flex-col lg:gap-2 xl:gap-8">
                 <img
-                  className="img-thumbnail m-2"
+                  className=" object-contain h-26 md:h-28 lg:h-35"
                   src="assets/ICT.png"
                   alt="ICT with code"
                 />
                 <img
-                  className="img-thumbnail m-2"
+                  className="object-contain h-26 md:h-28 lg:h-35"
                   src="assets/ICT2.png"
                   alt="ICT"
                 />
               </div>
             </div>
-            <div className="col d-flex flex-column align-items-end ">
-              <ul className="fs-1">
-                <li className="m-md-3">
+            <div className="mt-5 text-sm  md:mt-0 flex md:flex-col md:w-2/3 lg:text-xl ">
+              <ul className="text-base flex flex-col gap-3 md:gap-2 lg:gap-10">
+                <li className="">
                   To enter Vietnam’s market, ICT manufacturers must obtain
                   <br />
-                  <span className="text-danger font-weight-bold">
+                  <span className="text-red-600 font-weight-bold">
                     -Type Approval Certificate (TAC);{" "}
                   </span>
                   and/or
                   <br />
-                  <span className="text-danger font-weight-bold">
+                  <span className="text-red-600 font-weight-bold">
                     -Declaration of Conformity (DoC)
                   </span>
                 </li>
@@ -66,9 +69,11 @@ export default function Home() {
                   label) as shown on the left also.
                 </li>
               </ul>
-              <div className="d-flex   position-absolute bottom-0 end-0">
-                <span>Want to know more about the process? ➡️</span>
-                <Link className="btn position-relative" href="/contact">
+              <div className="absolute right-0 bottom-0 flex">
+                <span className="italic text-end m-2">
+                  Want to know more about the process? ➡️
+                </span>
+                <Link className="btn" href="/contact">
                   CONTACT US
                 </Link>
               </div>
@@ -77,43 +82,43 @@ export default function Home() {
         </div>
       </section>
       <section id="equipment">
-        <div className="container equipment ">
-          <h2 className=" m-3 responsive-font fs-1">
-            Equipment Required to Comply
-          </h2>
-          <div className="row flex-column flex-md-row my-5">
-            <div className="col">
-              <ul>
-                <li className="m-md-3">
+        <div className="container equipment flex flex-col justify-center">
+          <h2 className="title-sm md:title">Equipment Required to Comply</h2>
+          <div className="">
+            <div className="flex flex-col items-center justify-center md:flex-row">
+              <ul className="list-disc  md:w-2/3">
+                <li className="">
                   Mobile phones, including feature phones and smartphones with
                   2G, 3G, 4G LTE, 5G, WLAN, and NFC.
                 </li>
-                <li className="m-md-3">
+                <li className="">
                   WLAN WiFi transmitters, such as access points, routers,
                   laptops, tablets, etc.
                 </li>
-                <li className="m-md-3">
+                <li className="">
                   2G, 3G, 4G LTE, and 5G NR terminals, RFID-enabled scanners,
                   and RFID readers.
                 </li>
-                <li className="m-md-3">
+                <li className="">
                   Smart TVs, WiFi-enabled set-top boxes, and wireless
                   receiver-enabled translators.
                 </li>
-                <li className="m-md-3">
+                <li className="">
                   And more. Get in touch with us to understand your products.
                 </li>
               </ul>
+              <div className="md:w-1/3">
+                <img
+                  className="object-contain h-45 md:h-28 lg:h-35"
+                  src="assets/equipment.jpg"
+                  alt="Equipment required"
+                />
+              </div>
+            </div>
+            <div className="absolute left-0 bottom-0 flex">
               <a className="btn" href="#contactus">
                 GET IN TOUCH
               </a>
-            </div>
-            <div className="col">
-              <img
-                className="img-fluid"
-                src="assets/equipment.jpg"
-                alt="Equipment required"
-              />
             </div>
           </div>
         </div>
