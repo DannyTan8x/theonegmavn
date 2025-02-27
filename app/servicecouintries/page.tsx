@@ -26,7 +26,9 @@ const Service = () => {
                 <li>Thailand</li>
                 <li>Cambodia</li>
 
-                <li className="whitespace-nowrap">58+ countries</li>
+                <li className="whitespace-nowrap text-red-600">
+                  58+ countries
+                </li>
               </ul>
               <ul className="list-disc">
                 <strong className="fs-3">Americas</strong>
@@ -35,7 +37,9 @@ const Service = () => {
                 <li>Brazil</li>
                 <li>Argentina</li>
 
-                <li className="whitespace-nowrap">24+ countries</li>
+                <li className="whitespace-nowrap text-red-600">
+                  24+ countries
+                </li>
               </ul>
               <ul className="list-disc">
                 <strong className="fs-3">Europe</strong>
@@ -46,10 +50,12 @@ const Service = () => {
                 <li>Spain</li>
                 <li>Belgium</li>
 
-                <li className="whitespace-nowrap">51+ countries</li>
+                <li className="whitespace-nowrap text-red-600">
+                  51+ countries
+                </li>
               </ul>
             </div>
-            <hr className="absolute right-0 text-black w-100"></hr>
+            <hr className="absolute right-0 h-1 text-black w-2/3"></hr>
             <p>
               And Middle-East, Oceana, Afica,{" "}
               <span className="text-danger">200+countries. </span>

@@ -11,6 +11,7 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { useState, useEffect, useCallback } from "react";
 
@@ -30,6 +31,7 @@ function classNames(...classes: String[]) {
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("home");
   const [location, setLocation] = useState<Location | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -38,7 +40,7 @@ export default function Navbar() {
   }, []);
 
   //   const location = window.location;
-  const scrollToSection = useCallback((targetId: string, index: number) => {
+  const scrollToSection = useCallback((targetId: string) => {
     console.log(targetId);
     setActiveSection(targetId);
     const targetSection = document.getElementById(targetId);
@@ -49,20 +51,31 @@ export default function Navbar() {
       });
     }
   }, []);
+
+  const handleNavigation = (targetId: string) => {
+    setTimeout(() => {
+      scrollToSection(targetId);
+    }, 100); // Small delay for navigation to complete
+  };
+
   // Handle active class dynamically using IntersectionObserver
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
+    const sections = document.querySelectorAll("main section");
     const options = {
       root: null, // Use the viewport as the root
       threshold: 0.5, // Trigger when 50% of the section is visible
     };
     console.log("Scrolling");
+    let timeout: NodeJS.Timeout;
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      }, 100);
     }, options);
 
     sections.forEach((section) => {
@@ -75,18 +88,25 @@ export default function Navbar() {
   }, [location]);
   // Smooth scrolling for sections
 
+  // useEffect(() => {
+  //   //Ensure smooth scroll works when navigating via links
+  //   if (location && location.hash) {
+  //     const targetSection = document.getElementById(location.hash.slice(1)); // remove "#" from hash.
+  //     if (targetSection) {
+  //       window.scrollTo({
+  //         top: targetSection.offsetTop,
+  //         behavior: "smooth",
+  //       });
+  //     }
+  //   }
+  // }, [location]);
   useEffect(() => {
-    //Ensure smooth scroll works when navigating via links
-    if (location && location.hash) {
-      const targetSection = document.getElementById(location.hash.slice(1)); // remove "#" from hash.
-      if (targetSection) {
-        window.scrollTo({
-          top: targetSection.offsetTop,
-          behavior: "smooth",
-        });
-      }
+    if (pathname.includes("#")) {
+      const targetId = pathname.split("#")[1];
+      scrollToSection(targetId);
     }
-  }, [location]);
+  }, [pathname]);
+
   useEffect(() => {
     const sections = document.querySelectorAll("section");
 
@@ -112,22 +132,22 @@ export default function Navbar() {
       });
     };
 
-    const scrollToSection = (index: number) => {
-      if (index < 0 || index >= sections.length) return; // Out of bounds check
-      isScrolling = true;
+    // const scrollToSection = (index: number) => {
+    //   if (index < 0 || index >= sections.length) return; // Out of bounds check
+    //   isScrolling = true;
 
-      const section = sections[index];
-      console.log(section);
-      window.scrollTo({
-        top: section.offsetTop,
-        behavior: "smooth",
-      });
-      setActiveSection(section.id); // Update global state
-      // Reset isScrolling after animation duration
-      setTimeout(() => {
-        isScrolling = false;
-      }, 500); // Adjust this time based on animation duration
-    };
+    //   const section = sections[index];
+    //   console.log(section);
+    //   window.scrollTo({
+    //     top: section.offsetTop,
+    //     behavior: "smooth",
+    //   });
+    //   setActiveSection(section.id); // Update global state
+    //   // Reset isScrolling after animation duration
+    //   setTimeout(() => {
+    //     isScrolling = false;
+    //   }, 500); // Adjust this time based on animation duration
+    // };
 
     // Mouse wheel handler
     let wheelTimeout: NodeJS.Timeout;
@@ -156,7 +176,7 @@ export default function Navbar() {
           if (nextIndex >= 0 && nextIndex < sections.length) {
             currentSectionIndex = nextIndex;
 
-            scrollToSection(nextIndex);
+            scrollToSection(sections[nextIndex].id);
           }
         }
       }, 100); // Debounce delay
@@ -183,13 +203,13 @@ export default function Navbar() {
           // Swipe up
           if (currentSectionIndex < sections.length - 1) {
             currentSectionIndex += 1;
-            scrollToSection(currentSectionIndex);
+            scrollToSection(sections[currentSectionIndex].id);
           }
         } else {
           // Swipe down
           if (currentSectionIndex > 0) {
             currentSectionIndex -= 1;
-            scrollToSection(currentSectionIndex);
+            scrollToSection(sections[currentSectionIndex].id);
           }
         }
       }
@@ -273,12 +293,7 @@ export default function Navbar() {
                                     : ""
                                 } text-bold`
                               )}
-                              onClick={() =>
-                                scrollToSection(
-                                  item.section[0],
-                                  navigation.indexOf(item)
-                                )
-                              }
+                              onClick={() => handleNavigation(item.section[0])}
                             >
                               {item.name}
                             </Link>
