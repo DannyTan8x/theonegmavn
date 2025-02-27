@@ -1,0 +1,9 @@
+.footer {
+  background-color: rgb(33, 151, 189);
+
+}
+.footer  .container .socialmedia {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+  }

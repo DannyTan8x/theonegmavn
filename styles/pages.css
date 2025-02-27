@@ -19,6 +19,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
 }
 #home::after {
   content: "";
@@ -39,14 +40,8 @@
   position: relative;
   background-image: url("../public/assets/news.jpg");
   background-size: cover;
-  /* Ensures the image covers the entire area */
   background-position: center;
-  /* Centers the image */
   background-repeat: no-repeat;
-  /* Prevents the image from repeating */
-  min-height: 100vh;
-  /* Full viewport height */
-  z-index: -1;
 }
 #news::before {
   content: "";
@@ -82,8 +77,8 @@ section .container {
 }
 
 .home .btn {
-  color: white;
-  background-color: #0097b2;
+  color: var(--foreground);
+  background-color: var(--btn-blue);
 }
 
 .featured_service {
@@ -116,4 +111,57 @@ section .container {
     height: 100%;
     background: var(--gray);
   }
+}
+.service   ul li {
+  position: relative; 
+  padding-left: 35px;
+  margin-bottom: 4px;
+}
+
+.service ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 28px;
+  background-image: url("../public/assets/servicesicon.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  @media (width >= 64rem) {
+    width: 30px;
+    height: 38px;
+  }
+}
+.service .btn {
+  color: var(--background);
+  background-color: var(--btn-blue);
+  align-items: end;
+  text-align: right;
+}
+
+.service-couintries .btn {
+  color:var(--background);
+  background-color: var(--btn-blue);
+}
+.news{
+  color: var(--text-golden);
+  z-index: 2;
+}
+
+.newsbox {
+  flex: 1;
+  margin: 1rem;
+ /* Align content horizontally to the left */
+  align-items: flex-start;
+ /* Align content vertically to the bottom */
+  border: 2px solid #cdad7d;
+ /* Solid border with black color */
+
+}
+ .newsbox:hover {
+  background-color: rgba(254, 255, 255, 0.2);
+  border: 3px solid #e0c58b;
+ /* Solid border with black color */
 }

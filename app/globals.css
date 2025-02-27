@@ -1,5 +1,6 @@
 @import url('../styles/Navbar.css');
 @import url('../styles/pages.css');
+@import url('../styles/footer.css');
 @import "tailwindcss";
 /* Tailwind CSS layers */
 @tailwind base;
@@ -13,10 +14,11 @@
   --foreground: #171717;
   --primary: red;
   --bg-blue:  rgba(59, 240, 253, 0.6);
+  --btn-blue: #0097b2;
   --grey: rgba(255,255,255,0.5);
   --gray: #d9d9d9;
   --bg-golden: rgba(205, 173, 125, 0.6);
-  --text-golden:#967f5c;
+  --text-golden:#cdad7d;
   --text-dark-blue:#0f373a;
 }
 
@@ -31,19 +33,56 @@
     --bg-golden: rgba(50, 82, 130, 0.6);
     --text-golden:#798eae;
     --text-dark-blue:#f0c8c5;
+    --btn-blue: #0097b2;
   }
 }
+@media (min-aspect-ratio: 1/1) {
+  .flex-dynamic {
+    flex-direction: row;
+  }
+  .flex-row-dynamic {
+    flex-direction: column;
+  }
+  .flex-dynamic-reverse {
+    flex-direction: row;
+  }
+  .width-dynamic{
+    width: 30%;
+  }
+  .margin-dynamic{
+    margin:0 2rem ;
+  }
 
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .flex-dynamic {
+    flex-direction: column;
+  }
+  .flex-row-dynamic {
+    flex-direction: row;
+  }
+  .flex-dynamic-reverse {
+    flex-direction: column-reverse;
+  }
+  .widh-dynamic{
+    width: 100%;
+  }
+  .margin-dynamic{
+    margin: 2rem 0 ;
+  }
+}
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+.text-golden{
+    color: var(--text-golden);
+}
 
 @layer utilities {
-  .flex-between {
-    @apply flex justify-between items-center;
-  }
+
   section {
     @apply h-screen h-dvh px-[10vw] pb-[10vh] flex justify-start items-end snap-start;
   }
@@ -51,12 +90,13 @@ body {
     @apply font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl  mb-10;
   }
   .title-sm {
-    @apply font-bold text-xl sm:text-2xl md:text-2xl lg:text-4xl xl:text-5xl my-5;
+    @apply font-bold text-xl sm:text-2xl md:text-2xl lg:text-4xl xl:text-5xl mb-5;
   }
 
   .btn {
     @apply text-center text-gray-700 hover:bg-gray-700 hover:text-white hover:shadow-xl font-semibold px-4 py-2  transition-all duration-300 ease-in-out;
   }
+ 
 }
 
 @layer base {

@@ -28,7 +28,7 @@ function classNames(...classes: String[]) {
   return classes.filter(Boolean).join(" ");
 }
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState<string>("home");
   const [location, setLocation] = useState<Location | null>(null);
 
   useEffect(() => {
@@ -216,7 +216,9 @@ export default function Navbar() {
           className={classNames(
             `navbar nav-${activeSection}`,
             "fixed p-2 absolute left-0 right-0 md:left-15 md:mt-5 md:right-15",
-            open ? "md:rounded-t-[40px] md:rounded-b-lg" : "md:rounded-full" // Dynamically change based on open state
+            open
+              ? "md:rounded-t-[40px] md:rounded-b-lg bg-white"
+              : "md:rounded-full  bg-white" // Dynamically change based on open state
           )}
         >
           <div className="mx-auto max-w-7xl px-2 ms:px-4 lg:px-3">
