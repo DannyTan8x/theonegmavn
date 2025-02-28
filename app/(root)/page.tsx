@@ -1,6 +1,8 @@
 import { link } from "fs";
 import Image from "next/image";
 import Link from "next/link";
+import AnimatedSection from "@/components/AnimatedSection";
+
 const posts = [
   {
     number: "-1",
@@ -29,179 +31,194 @@ const posts = [
 export default function Home() {
   return (
     <>
-      <section id="home" className="@container ">
-        <div className="blue hidden md:block absolute left-0 top-0 p-16 "></div>
-        <div className="container home  flex flex-col justify-center">
-          <h2 className="title">
-            Product Certification <br />
-            Expert
-          </h2>
-          <p className=" md:w-[50%]">
-            We provide one-stop professional services in the field of product
-            compliance, bringing your products to market in Vietnam and
-            Southeast Asia.
-          </p>
-          <div className="absolute right-0 bottom-0 flex">
-            <a className="btn" href="#featured_service">
-              LEARN MORE
-            </a>
-          </div>
-        </div>
-      </section>
-      <section id="featured_service" className="@container ">
-        <div className="container featured_service flex flex-col md:justify-center md:block ">
-          <h2 className="title-sm md:title">
-            Featured service <br className="hidden lg:block" /> —— MIC ICT type
-            approval certificate
-          </h2>
-          <div className="flex flex-dynamic lg:justify-around xl:mt-20">
-            <div className="flex justify-center width-dynamic margin-dynamic  ">
-              <div className="flex justify-around flex-row-dynamic lg:gap-2 xl:gap-8">
-                <img
-                  className=" object-contain h-26 md:h-28 lg:h-35"
-                  src="assets/ICT.png"
-                  alt="ICT with code"
-                />
-                <img
-                  className="object-contain h-26 md:h-28 lg:h-35"
-                  src="assets/ICT2.png"
-                  alt="ICT"
-                />
-              </div>
-            </div>
-            <div className="mt-5 text-sm  md:mt-0 flex md:flex-col md:w-2/3 lg:text-xl margin-dynamic ">
-              <ul className="text-base flex flex-col gap-3 md:gap-2 lg:gap-10">
-                <li className="">
-                  To enter Vietnam’s market, ICT manufacturers must obtain
-                  <br />
-                  <span className="text-red-600 font-weight-bold">
-                    -Type Approval Certificate (TAC);{" "}
-                  </span>
-                  and/or
-                  <br />
-                  <span className="text-red-600 font-weight-bold">
-                    -Declaration of Conformity (DoC)
-                  </span>
-                </li>
-                <li className="m-md-3">
-                  TAC is issued by VNTA based on MIC regulations, while DoC is
-                  required for import clearance. Certification follows different
-                  systems, including factory audits and shipment-based
-                  approvals.
-                </li>
-                <li className="m-md-3">
-                  After TAC and DoC, products need to be put on ICT Mark (ICT
-                  label) as shown on the left also.
-                </li>
-              </ul>
-              <div className="absolute right-0 bottom-0 flex">
-                <span className="italic text-end m-2">
-                  Want to know more about the process? ➡️
-                </span>
-                <Link className="btn" href="/contact">
-                  CONTACT US
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="equipment" className="@container ">
-        <div className="container equipment flex flex-col justify-center">
-          <h2 className="title-sm md:title">Equipment Required to Comply</h2>
-          <div className="">
-            <div className="flex flex-dynamic lg:flex-row items-center justify-center ">
-              <ul className="list-disc  md:w-2/3">
-                <li className="">
-                  Mobile phones, including feature phones and smartphones with
-                  2G, 3G, 4G LTE, 5G, WLAN, and NFC.
-                </li>
-                <li className="">
-                  WLAN WiFi transmitters, such as access points, routers,
-                  laptops, tablets, etc.
-                </li>
-                <li className="">
-                  2G, 3G, 4G LTE, and 5G NR terminals, RFID-enabled scanners,
-                  and RFID readers.
-                </li>
-                <li className="">
-                  Smart TVs, WiFi-enabled set-top boxes, and wireless
-                  receiver-enabled translators.
-                </li>
-                <li className="">
-                  And more. Get in touch with us to understand your products.
-                </li>
-              </ul>
-              <div className="width-dynamic margin-dynamic">
-                <img
-                  className="object-contain h-45 md:h-58 lg:h-55"
-                  src="assets/equipment.jpg"
-                  alt="Equipment required"
-                />
-              </div>
-            </div>
-            <div className="absolute left-0 bottom-0 flex">
-              <a className="btn" href="#contactus">
-                GET IN TOUCH
+      <AnimatedSection>
+        <section id="home" className="@container ">
+          <div className="blue hidden md:block absolute left-0 top-0 p-16 "></div>
+          <div className="container home  flex flex-col justify-center">
+            <h2 className="title ">
+              Product Certification <br />
+              Expert
+            </h2>
+            <p className=" md:w-[50%]">
+              We provide one-stop professional services in the field of product
+              compliance, bringing your products to market in Vietnam and
+              Southeast Asia.
+            </p>
+            <div className="absolute right-0 bottom-0 flex">
+              <a className="btn " href="#featured_service">
+                LEARN MORE
               </a>
             </div>
           </div>
-        </div>
-      </section>
-      <section id="service" className="@container ">
-        <div className="container service flex flex-col justify-center">
-          <div className="flex flex-dynamic-reverse">
-            <div className="flex justify-center items-center width-dynamic margin-dynamic">
-              <img
-                className="object-contain h-80"
-                src="assets/services.jpg"
-                alt="Services"
-              />
-            </div>
-            <div className="flex flex-col justify-between">
-              <h2 className="title-sm">Our Services</h2>
-              <p className="">
-                We provide one-stop professional services in the field of
-                product compliance, making product certification faster and
-                simpler.
-              </p>
-              <br />
-              <ul className="flex flex-col gap-3">
-                <li>EMC /Safety/RF/Energy efficiency</li>
-                <li>In Country Test / MRA</li>
-                <li>Local Representative</li>
-                <li>And More.</li>
-              </ul>
-              <div className="absolute right-0 bottom-0 flex flex-col items-center">
-                <p>over 200 countries</p>
-                <Link className="btn " href="/servicecouintries">
-                  Our service countries
-                </Link>
+        </section>
+      </AnimatedSection>
+      <AnimatedSection delay={0.2}>
+        <section id="featured_service" className="@container ">
+          <div className="container featured_service flex flex-col md:justify-center md:block ">
+            <h2 className="title-sm md:title">
+              Featured service <br className="hidden lg:block" /> —— MIC ICT
+              type approval certificate
+            </h2>
+            <div className="flex flex-dynamic lg:justify-around xl:mt-20">
+              <div className="flex justify-center width-dynamic margin-dynamic  ">
+                <div className="flex justify-around flex-row-dynamic lg:gap-2 xl:gap-8">
+                  <img
+                    className=" object-contain h-26 md:h-28 lg:h-35"
+                    src="assets/ICT.png"
+                    alt="ICT with code"
+                  />
+                  <img
+                    className="object-contain h-26 md:h-28 lg:h-35"
+                    src="assets/ICT2.png"
+                    alt="ICT"
+                  />
+                </div>
+              </div>
+              <div className="mt-5 text-sm  md:mt-0 flex md:flex-col md:w-2/3 lg:text-xl margin-dynamic ">
+                <ul className="text-base flex flex-col gap-3 md:gap-2 lg:gap-10">
+                  <li className="">
+                    To enter Vietnam’s market, ICT manufacturers must obtain
+                    <br />
+                    <span className="text-red-600 font-weight-bold">
+                      -Type Approval Certificate (TAC);{" "}
+                    </span>
+                    and/or
+                    <br />
+                    <span className="text-red-600 font-weight-bold">
+                      -Declaration of Conformity (DoC)
+                    </span>
+                  </li>
+                  <li className="m-md-3">
+                    TAC is issued by VNTA based on MIC regulations, while DoC is
+                    required for import clearance. Certification follows
+                    different systems, including factory audits and
+                    shipment-based approvals.
+                  </li>
+                  <li className="m-md-3">
+                    After TAC and DoC, products need to be put on ICT Mark (ICT
+                    label) as shown on the left also.
+                  </li>
+                </ul>
+                <div className="absolute right-0 bottom-0 flex">
+                  <span className="italic text-end m-2">
+                    Want to know more about the process? ➡️
+                  </span>
+                  <Link className="btn" href="/contact">
+                    CONTACT US
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section id="news" className="@container ">
-        <div className="container news flex flex-col items-center">
-          <h2 className="title-sm">News</h2>
-          <p className="italic text-xl">What’s New in Vietnam Certification</p>
-          <div className="flex flex-dynamic margin-dynamic min-w-[60%] max-h-[80%]">
-            {posts?.map((item) => (
-              <div key={item.number} className="newsbox p-3 ">
-                <p>{item.number}</p>
-                <a href={item.link} target="_blank">
-                  <ul className="text-white text-sm flex flex-col gap-5">
-                    <li>{item.title}</li>
-                    <li>For more details, please visit:</li>
-                    <li>{item.linkCap}</li>
-                  </ul>
+        </section>
+      </AnimatedSection>
+      <AnimatedSection delay={0.4}>
+        <section id="equipment" className="@container ">
+          <div className="container equipment flex flex-col justify-center">
+            <h2 className="title-sm md:title">Equipment Required to Comply</h2>
+            <div className="">
+              <div className="flex flex-dynamic lg:flex-row  justify-center ">
+                <ul className="list-disc  md:w-2/3">
+                  <li className="">
+                    Mobile phones, including feature phones and smartphones with
+                    2G, 3G, 4G LTE, 5G, WLAN, and NFC.
+                  </li>
+                  <li className="">
+                    WLAN WiFi transmitters, such as access points, routers,
+                    laptops, tablets, etc.
+                  </li>
+                  <li className="">
+                    2G, 3G, 4G LTE, and 5G NR terminals, RFID-enabled scanners,
+                    and RFID readers.
+                  </li>
+                  <li className="">
+                    Smart TVs, WiFi-enabled set-top boxes, and wireless
+                    receiver-enabled translators.
+                  </li>
+                  <li className="">
+                    And more. Get in touch with us to understand your products.
+                  </li>
+                </ul>
+                <div className="width-dynamic margin-dynamic flex justify-center">
+                  <img
+                    className="object-contain h-45 md:h-58 lg:h-55"
+                    src="assets/equipment.jpg"
+                    alt="Equipment required"
+                  />
+                </div>
+              </div>
+              <div className="absolute left-0 bottom-0 flex">
+                <a className="btn" href="#contactus">
+                  GET IN TOUCH
                 </a>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
+      <AnimatedSection delay={0.6}>
+        <section id="service" className="@container ">
+          <div className="container service flex flex-col justify-center">
+            <div className="flex flex-dynamic-reverse">
+              <div className="flex justify-center items-center width-dynamic margin-dynamic">
+                <img
+                  className="object-contain h-80"
+                  src="assets/services.jpg"
+                  alt="Services"
+                />
+              </div>
+              <div className="flex flex-col justify-between ">
+                <h2 className="title-sm">Our Services</h2>
+                <p className="w-2/3">
+                  We provide one-stop professional services in the field of
+                  product compliance, making product certification faster and
+                  simpler.
+                </p>
+                <br />
+                <ul className="flex flex-col gap-3">
+                  <li>EMC /Safety/RF/Energy efficiency</li>
+                  <li>In Country Test / MRA</li>
+                  <li>Local Representative</li>
+                  <li>And More.</li>
+                </ul>
+                <div className="absolute right-0 bottom-0 flex flex-col items-center">
+                  <p>over 200 countries</p>
+                  <Link className="btn " href="/servicecouintries">
+                    Our service countries
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+      <AnimatedSection delay={0.8}>
+        <section id="news" className="@container ">
+          <div className="container news flex flex-col items-center">
+            <h2 className="title-sm">News</h2>
+            <p className="italic text-xl">
+              What’s New in Vietnam Certification
+            </p>
+            <div className="flex flex-dynamic margin-dynamic min-w-[60%] max-h-[80%]">
+              {posts?.map((item) => (
+                <div
+                  key={item.number}
+                  className="newsbox glassmorphism hover:border-textGolden p-3 "
+                >
+                  <p>{item.number}</p>
+                  <a href={item.link} target="_blank">
+                    <ul className="text-white text-sm flex flex-col gap-5">
+                      <li>{item.title}</li>
+                      <li>For more details, please visit:</li>
+                      <li>{item.linkCap}</li>
+                    </ul>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
     </>
   );
 }

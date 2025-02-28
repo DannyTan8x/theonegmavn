@@ -24,18 +24,23 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: rgb(0,255,255);
-    --bg-blue:  rgba(59, 240, 253, 0.6);
-    --grey: rgba(59,59,59,0.5);
-    --gray: rgba(40, 40, 40, 0.6);
-    --bg-golden: rgba(50, 82, 130, 0.6);
-    --text-golden:#798eae;
-    --text-dark-blue:#f0c8c5;
-    --btn-blue: #0097b2;
+    --background: #121212; /* Dark gray-black for a deep dark mode */
+    --foreground: #e4e4e4; /* Light gray for readability */
+
+    --primary: #ff4f4f; /* Soft red for accents */
+    --bg-blue: rgba(59, 240, 253, 0.3); /* Subtle cyan-blue with transparency */
+    --btn-blue: #00a5c4; /* Vibrant teal for buttons */
+
+    --grey: rgba(255, 255, 255, 0.3); /* Muted gray for secondary elements */
+    --gray:rgba(0, 0, 0, 0.6); /* Darker gray for slight contrasts */
+
+    --bg-golden: rgba(205, 173, 125, 0.4); /* Soft golden hue with transparency */
+    --text-golden: #d4af75; /* Softer gold for text highlights */
+
+    --text-dark-blue: #67aab1; /* Muted teal-blue for readable contrast */
   }
 }
+
 @media (min-aspect-ratio: 1/1) {
   .flex-dynamic {
     flex-direction: row;
@@ -77,14 +82,25 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-.text-golden{
-    color: var(--text-golden);
+
+.glassmorphism {
+  background: var(--grey); /* Transparent */
+  backdrop-filter: blur(10px); /* Blurred glass effect */
+  border-radius: 10px;
+  border: 2px solid var(--bg-golden);
+}
+.neumorphism {
+  background: #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
 }
 
 @layer utilities {
-
   section {
-    @apply h-screen h-dvh px-[10vw] pb-[10vh] flex justify-start items-end snap-start;
+    @apply h-screen min-h-dvh px-[10vw] pb-[10vh] flex justify-start items-end snap-start;
+  }
+  .container{
+    max-width: 1280px;
   }
   .title {
     @apply font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl  mb-10;
@@ -94,8 +110,13 @@ body {
   }
 
   .btn {
-    @apply text-center text-gray-700 hover:bg-gray-700 hover:text-white hover:shadow-xl font-semibold px-4 py-2  transition-all duration-300 ease-in-out;
+    @apply  text-center text-gray-700 font-semibold px-4 py-2  transition-all duration-300 ease-in-out;
   }
+ .btn:hover{
+  @apply  text-gray-100 
+ }
+
+  
  
 }
 
