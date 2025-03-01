@@ -44,9 +44,9 @@ export default function Navbar() {
     console.log(targetId);
     setActiveSection(targetId);
     const targetSection = document.getElementById(targetId);
-    if (targetSection) {
+    if (targetSection && targetSection instanceof HTMLElement) {
       window.scrollTo({
-        top: targetSection.offsetTop,
+        top: (targetSection as HTMLElement).offsetTop,
         behavior: "smooth",
       });
     }
@@ -88,18 +88,6 @@ export default function Navbar() {
   }, [location]);
   // Smooth scrolling for sections
 
-  // useEffect(() => {
-  //   //Ensure smooth scroll works when navigating via links
-  //   if (location && location.hash) {
-  //     const targetSection = document.getElementById(location.hash.slice(1)); // remove "#" from hash.
-  //     if (targetSection) {
-  //       window.scrollTo({
-  //         top: targetSection.offsetTop,
-  //         behavior: "smooth",
-  //       });
-  //     }
-  //   }
-  // }, [location]);
   useEffect(() => {
     if (pathname.includes("#")) {
       const targetId = pathname.split("#")[1];
@@ -107,15 +95,121 @@ export default function Navbar() {
     }
   }, [pathname]);
 
+  // useEffect(() => {
+  //   const sections = document.querySelectorAll("section");
+
+  //   let currentSectionIndex = 0;
+  //   let isScrolling = false;
+
+  //   // Variables for touch control
+  //   let startY = 0;
+  //   let endY = 0;
+  //   const handleActive = () => {
+  //     sections.forEach((section) => {
+  //       const element = document.getElementById(section.id);
+  //       if (element) {
+  //         const rect = element.getBoundingClientRect();
+  //         if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+  //           setActiveSection(section.id);
+  //           document.documentElement.style.setProperty(
+  //             "--active-section",
+  //             section.id
+  //           );
+  //         }
+  //       }
+  //     });
+  //   };
+
+  //   // Mouse wheel handler
+  //   let wheelTimeout: NodeJS.Timeout;
+  //   const handleWheel = (event: WheelEvent) => {
+  //     handleActive();
+  //     if (isScrolling) return;
+
+  //     clearTimeout(wheelTimeout); // Reset debounce timer
+  //     wheelTimeout = setTimeout(() => {
+  //       event.preventDefault();
+
+  //       const direction = event.deltaY > 0 ? 1 : -1;
+  //       const currentScroll = window.scrollY;
+
+  //       const currentSection = sections[currentSectionIndex];
+  //       console.log("wheelSection:", currentSection);
+  //       const sectionTop = currentSection.offsetTop;
+  //       const sectionBottom = sectionTop + currentSection.offsetHeight;
+
+  //       if (
+  //         (direction === 1 &&
+  //           currentScroll + window.innerHeight >= sectionBottom) ||
+  //         (direction === -1 && currentScroll <= sectionTop)
+  //       ) {
+  //         const nextIndex = currentSectionIndex + direction;
+  //         if (nextIndex >= 0 && nextIndex < sections.length) {
+  //           currentSectionIndex = nextIndex;
+
+  //           scrollToSection(sections[nextIndex].id);
+  //         }
+  //       }
+  //     }, 100); // Debounce delay
+  //   };
+
+  //   // Touch start handler
+  //   const handleTouchStart = (event: TouchEvent) => {
+  //     startY = event.touches[0].clientY; // Get the initial touch Y position
+  //   };
+
+  //   // Touch move handler
+  //   const handleTouchMove = (event: TouchEvent) => {
+  //     endY = event.touches[0].clientY; // Update the touch Y position as the finger moves
+  //   };
+
+  //   // Touch end handler
+  //   const handleTouchEnd = () => {
+  //     if (isScrolling) return; // Prevent multiple scrolls during animation
+
+  //     const direction = startY - endY; // Calculate the swipe direction
+  //     if (Math.abs(direction) > 50) {
+  //       // Only trigger if the swipe is significant
+  //       if (direction > 0) {
+  //         // Swipe up
+  //         if (currentSectionIndex < sections.length - 1) {
+  //           currentSectionIndex += 1;
+  //           scrollToSection(sections[currentSectionIndex].id);
+  //         }
+  //       } else {
+  //         // Swipe down
+  //         if (currentSectionIndex > 0) {
+  //           currentSectionIndex -= 1;
+  //           scrollToSection(sections[currentSectionIndex].id);
+  //         }
+  //       }
+  //     }
+  //   };
+
+  //   // Add event listeners for both mouse and touch controls
+  //   window.addEventListener("wheel", handleWheel, { passive: false });
+  //   window.addEventListener("touchstart", handleTouchStart, { passive: true });
+  //   window.addEventListener("touchmove", handleTouchMove, { passive: true });
+  //   window.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+  //   return () => {
+  //     // Cleanup event listeners
+  //     window.removeEventListener("wheel", handleWheel);
+  //     window.removeEventListener("touchstart", handleTouchStart);
+  //     window.removeEventListener("touchmove", handleTouchMove);
+  //     window.removeEventListener("touchend", handleTouchEnd);
+  //   };
+  // }, []);
+
   useEffect(() => {
     const sections = document.querySelectorAll("section");
-
     let currentSectionIndex = 0;
     let isScrolling = false;
 
     // Variables for touch control
     let startY = 0;
     let endY = 0;
+
     const handleActive = () => {
       sections.forEach((section) => {
         const element = document.getElementById(section.id);
@@ -132,54 +226,64 @@ export default function Navbar() {
       });
     };
 
-    // const scrollToSection = (index: number) => {
-    //   if (index < 0 || index >= sections.length) return; // Out of bounds check
-    //   isScrolling = true;
-
-    //   const section = sections[index];
-    //   console.log(section);
-    //   window.scrollTo({
-    //     top: section.offsetTop,
-    //     behavior: "smooth",
-    //   });
-    //   setActiveSection(section.id); // Update global state
-    //   // Reset isScrolling after animation duration
-    //   setTimeout(() => {
-    //     isScrolling = false;
-    //   }, 500); // Adjust this time based on animation duration
-    // };
-
-    // Mouse wheel handler
-    let wheelTimeout: NodeJS.Timeout;
+    // Mouse wheel handler with dynamic scroll speed
     const handleWheel = (event: WheelEvent) => {
       handleActive();
-      if (isScrolling) return;
+      if (isScrolling) return; // Prevent multiple scrolls
 
-      clearTimeout(wheelTimeout); // Reset debounce timer
-      wheelTimeout = setTimeout(() => {
-        event.preventDefault();
+      // Set isScrolling to true to prevent multiple triggers during scroll
+      isScrolling = true;
 
-        const direction = event.deltaY > 0 ? 1 : -1;
-        const currentScroll = window.scrollY;
+      // Normalize scroll direction and delta
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const scrollSpeed = Math.abs(event.deltaY); // Get scroll distance
+      const maxSpeed = 300; // Max scroll speed for smoothing (can be adjusted)
+      const scrollDistance = Math.min(scrollSpeed, maxSpeed); // Cap scroll distance
 
-        const currentSection = sections[currentSectionIndex];
-        console.log("wheelSection:", currentSection);
-        const sectionTop = currentSection.offsetTop;
-        const sectionBottom = sectionTop + currentSection.offsetHeight;
+      const currentScroll = window.scrollY;
+      const currentSection = sections[currentSectionIndex];
+      const nextSection = sections[currentSectionIndex + direction];
 
-        if (
-          (direction === 1 &&
-            currentScroll + window.innerHeight >= sectionBottom) ||
-          (direction === -1 && currentScroll <= sectionTop)
-        ) {
+      if (nextSection) {
+        const sectionHeight = nextSection.offsetHeight;
+        const sectionTop = nextSection.offsetTop;
+
+        // Check if the scroll has passed 30% of the next section
+        const passed30Percent =
+          currentScroll + window.innerHeight >=
+          sectionTop + sectionHeight * 0.3;
+
+        if (passed30Percent) {
+          // Scroll to the next section
           const nextIndex = currentSectionIndex + direction;
           if (nextIndex >= 0 && nextIndex < sections.length) {
             currentSectionIndex = nextIndex;
-
-            scrollToSection(sections[nextIndex].id);
           }
         }
-      }, 100); // Debounce delay
+      }
+
+      // Get the section that is currently in the viewport
+      let targetSection: HTMLElement | null = null;
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+          targetSection = section;
+        }
+      });
+
+      if (targetSection) {
+        window.scrollTo({
+          top: (targetSection as HTMLElement).offsetTop,
+          behavior: "smooth",
+        });
+      }
+
+      event.preventDefault(); // Prevent default scroll behavior
+
+      // Reset isScrolling after a short delay to allow smooth scrolling to complete
+      setTimeout(() => {
+        isScrolling = false;
+      }, 600); // Adjust timeout based on your animation duration
     };
 
     // Touch start handler
@@ -189,30 +293,56 @@ export default function Navbar() {
 
     // Touch move handler
     const handleTouchMove = (event: TouchEvent) => {
-      endY = event.touches[0].clientY; // Update the touch Y position as the finger moves
+      endY = event.touches[0].clientY; // Update the touch Y position
     };
 
-    // Touch end handler
+    // Touch end handler with dynamic swipe behavior
     const handleTouchEnd = () => {
       if (isScrolling) return; // Prevent multiple scrolls during animation
 
-      const direction = startY - endY; // Calculate the swipe direction
-      if (Math.abs(direction) > 50) {
-        // Only trigger if the swipe is significant
-        if (direction > 0) {
-          // Swipe up
-          if (currentSectionIndex < sections.length - 1) {
-            currentSectionIndex += 1;
-            scrollToSection(sections[currentSectionIndex].id);
-          }
-        } else {
-          // Swipe down
-          if (currentSectionIndex > 0) {
-            currentSectionIndex -= 1;
-            scrollToSection(sections[currentSectionIndex].id);
+      // Set isScrolling to true
+      isScrolling = true;
+
+      const direction = startY - endY; // Calculate swipe direction
+      const swipeDistance = Math.abs(direction);
+      const currentSection = sections[currentSectionIndex];
+      const nextSection =
+        sections[currentSectionIndex + (direction > 0 ? 1 : -1)];
+
+      if (nextSection) {
+        const sectionHeight = nextSection.offsetHeight;
+        const sectionTop = nextSection.offsetTop;
+
+        // Check if the swipe has passed 30% of the next section height
+        const passed30Percent = swipeDistance >= sectionHeight * 0.3;
+
+        if (passed30Percent) {
+          // Scroll to the next section
+          const nextIndex =
+            direction > 0 ? currentSectionIndex + 1 : currentSectionIndex - 1;
+          if (nextIndex >= 0 && nextIndex < sections.length) {
+            currentSectionIndex = nextIndex;
           }
         }
       }
+
+      // Get the section that is currently in the viewport
+      let targetSection: HTMLElement | null = null;
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+          targetSection = section;
+        }
+      });
+
+      if (targetSection) {
+        scrollToSection((targetSection as HTMLElement).id); // Scroll to the section that is visible in the viewport
+      }
+
+      // Reset isScrolling after a short delay to allow smooth scrolling to complete
+      setTimeout(() => {
+        isScrolling = false;
+      }, 600); // Adjust timeout based on your animation duration
     };
 
     // Add event listeners for both mouse and touch controls
@@ -229,20 +359,24 @@ export default function Navbar() {
       window.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
+
   return (
-    <Disclosure as="nav">
+    <Disclosure
+      as="nav"
+      className="container animate-fade-down animate-once animate-ease-in"
+    >
       {({ open }) => (
         <div
           className={classNames(
-            `navbar nav-${activeSection}`,
+            `navbar  m-auto nav-${activeSection}`,
             "fixed p-2 absolute left-0 right-0 md:left-15 md:mt-5 md:right-15",
             open
-              ? "md:rounded-t-[40px] md:rounded-b-lg bg-white"
-              : "md:rounded-full  bg-white" // Dynamically change based on open state
+              ? "md:rounded-t-[40px] md:rounded-b-lg !bg-white"
+              : "md:rounded-full " // Dynamically change based on open state
           )}
         >
-          <div className="mx-auto max-w-7xl px-2 ms:px-4 lg:px-3">
-            <div className="mx-auto max-w-7xl px-2 ms:px-4 lg:px-3">
+          <div className="mx-auto  px-2 ms:px-4 lg:px-3">
+            <div className="mx-auto  px-2 ms:px-4 lg:px-3">
               <div className="relative flex h-16 items-center justify-between">
                 {/* Logo & The One */}
                 <div className={classNames("flex gap-2 lg:gap-5")}>
@@ -317,7 +451,7 @@ export default function Navbar() {
                     }
                     className={classNames(
                       item.section.includes(activeSection)
-                        ? " text-black text-bold"
+                        ? " text-black font-bold"
                         : "text-gray-500 hover:bg-gray-700 hover:text-white",
                       "block rounded-md px-3 py-2 text-base font-medium"
                     )}

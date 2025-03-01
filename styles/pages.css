@@ -56,10 +56,10 @@
   /* Ensure the overlay is on top of the background image */
 }
 #contactus {
-  background-color: #f4f1ec;
+  background-color:var(--gray);
 }
 #service-couintries {
-  background-color: rgba(67, 159, 175, 0.8);
+  background-color:var(--bg-blue);
 }
 section .container {
   position: relative;

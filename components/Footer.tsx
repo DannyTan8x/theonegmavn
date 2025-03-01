@@ -1,12 +1,12 @@
 export default function Footer() {
   return (
-    <footer className="footer py-5">
-      <div className="container text-white p-8">
+    <footer className="footer flex justify-center  py-5">
+      <div className="container text-white p-5">
         <div className="flex items-center justify-between">
-          <h4 className="text-xl font-bold">
+          <h4 className="text-base md:text-balance font-bold w-3/4">
             CÔNG TY TNHH THE ONE TESTING TECHNOLOGY VIỆT NAM
           </h4>
-          <div className="flex gap-9  ">
+          <div className="flex gap-2 ">
             <img
               className="object-contain h-5"
               src="assets/f-white.svg"

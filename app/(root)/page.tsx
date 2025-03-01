@@ -60,7 +60,7 @@ export default function Home() {
               type approval certificate
             </h2>
             <div className="flex flex-dynamic lg:justify-around xl:mt-20">
-              <div className="flex justify-center width-dynamic margin-dynamic  ">
+              <div className="flex justify-center width-dynamic   ">
                 <div className="flex justify-around flex-row-dynamic lg:gap-2 xl:gap-8">
                   <img
                     className=" object-contain h-26 md:h-28 lg:h-35"
@@ -74,8 +74,8 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="mt-5 text-sm  md:mt-0 flex md:flex-col md:w-2/3 lg:text-xl margin-dynamic ">
-                <ul className="text-base flex flex-col gap-3 md:gap-2 lg:gap-10">
+              <div className="mt-1 text-sm  md:mt-0 flex md:flex-col md:w-2/3 lg:text-xl margin-dynamic @container ">
+                <ul className="text-sm flex flex-col gap-3 md:gap-2 lg:gap-10 @md:text-sm">
                   <li className="">
                     To enter Vietnam’s market, ICT manufacturers must obtain
                     <br />
@@ -194,20 +194,20 @@ export default function Home() {
       </AnimatedSection>
       <AnimatedSection delay={0.8}>
         <section id="news" className="@container ">
-          <div className="container news flex flex-col items-center">
+          <div className="container news flex flex-col items-center @container">
             <h2 className="title-sm">News</h2>
-            <p className="italic text-xl">
+            <p className="italic text-sm @md:text-base @lg:text-2xl ">
               What’s New in Vietnam Certification
             </p>
-            <div className="flex flex-dynamic margin-dynamic min-w-[60%] max-h-[80%]">
+            <div className="grid grid-cols-1 gap-4 flex-1 @md:grid-cols-2 @lg:grid-cols-3 overflow-y-auto overflow-hidden">
               {posts?.map((item) => (
                 <div
                   key={item.number}
-                  className="newsbox glassmorphism hover:border-textGolden p-3 "
+                  className="newsbox glassmorphism hover:border-textGolden p-3 text-sm @md:text-base @lg:text-2xl "
                 >
                   <p>{item.number}</p>
                   <a href={item.link} target="_blank">
-                    <ul className="text-white text-sm flex flex-col gap-5">
+                    <ul className="text-background flex flex-col gap-5">
                       <li>{item.title}</li>
                       <li>For more details, please visit:</li>
                       <li>{item.linkCap}</li>

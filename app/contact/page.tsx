@@ -14,20 +14,20 @@ export default function Contact() {
           <div className="flex flex-dynamic">
             <ul className="fontGold">
               <li>
-                <LocationOnIcon className="text-golden" />
-                <span className="text-black">
+                <LocationOnIcon className="text-textGolden" />:
+                <span className="text-foreground">
                   V3-37 Vinhomes Grand Park, 512 Nguyễn Xiển, Phường Long Bình,
                   Thành Phố Thủ Đức
                 </span>
               </li>
               <li>
-                <LocalPhoneIcon className="text-golden" />
-                <span className="text-black">0369-614-293</span>
+                <LocalPhoneIcon className="text-textGolden" />:
+                <span className="text-foreground">0369-614-293</span>
               </li>
-              <li>
-                <EmailIcon className="text-golden" />
-                <span className="text-black">
-                  sofia.trang@theone-gma.vn / service@theone-gma.vn
+              <li className="flex">
+                <EmailIcon className="text-textGolden" />:
+                <span className="text-foreground ">
+                  <p>sofia.trang@theone-gma.vn / service@theone-gma.vn</p>
                 </span>
               </li>
               <li className="flex gap-5">

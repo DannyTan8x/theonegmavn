@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
