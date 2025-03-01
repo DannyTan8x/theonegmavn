@@ -369,7 +369,7 @@ export default function Navbar() {
         <div
           className={classNames(
             `navbar  m-auto nav-${activeSection}`,
-            "fixed p-2 absolute left-0 right-0 md:left-15 md:mt-5 md:right-15",
+            "fixed p-2  left-0 right-0 md:left-15 md:mt-5 md:right-15",
             open
               ? "md:rounded-t-[40px] md:rounded-b-lg !bg-white"
               : "md:rounded-full " // Dynamically change based on open state
