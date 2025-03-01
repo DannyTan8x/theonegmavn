@@ -169,7 +169,7 @@ export default function Home() {
               </div>
               <div className="flex flex-col justify-between ">
                 <h2 className="title-sm">Our Services</h2>
-                <p className="w-2/3">
+                <p className=" md:w-2/3">
                   We provide one-stop professional services in the field of
                   product compliance, making product certification faster and
                   simpler.
@@ -193,13 +193,13 @@ export default function Home() {
         </section>
       </AnimatedSection>
       <AnimatedSection delay={0.8}>
-        <section id="news" className="@container ">
-          <div className="container news flex flex-col items-center @container">
+        <section id="news">
+          <div className="container news max-w-screen-lg flex flex-col items-center @container">
             <h2 className="title-sm">News</h2>
             <p className="italic text-sm @md:text-base @lg:text-2xl ">
               What’s New in Vietnam Certification
             </p>
-            <div className="grid grid-cols-1 gap-4 flex-1 @md:grid-cols-2 @lg:grid-cols-3 overflow-y-auto overflow-hidden">
+            <div className="grid grid-cols-1 gap-4 flex-1 @md:grid-cols-2 @xl:grid-cols-3 overflow-y-auto overflow-hidden">
               {posts?.map((item) => (
                 <div
                   key={item.number}
